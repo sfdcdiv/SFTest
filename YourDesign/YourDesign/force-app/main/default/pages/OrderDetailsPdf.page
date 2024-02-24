@@ -1,0 +1,61 @@
+<apex:page standardController="New_Order__c" extensions="OrderDetailExt" renderAs="pdf" applyBodyTag="false">
+     <head>
+        <style>
+            @page{
+            size: 10in 18 in;
+            }
+        </style> 
+    </head>
+     <table width="100%" height="100%" style="1px solid black">
+        <tr>
+            <td><apex:image id="logo2" value="{!$Resource.YourDesignStudioLogo}" width="100" height="85"/></td>
+            <td style="font:24pt; padding-left:10px; padding-right:250px;">Your Design Studio</td>
+        </tr> 
+        <tr>
+            <td colspan="2" > </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: center;"><font size="+2"><strong>Order Details</strong></font></td>
+        </tr>
+    </table>
+    
+    <table width="100%" height="100%" style="border: 1px solid black; border-collapse:collapse;">
+        <tr style="border: 1px solid black;">
+            <th colspan="2" style="border: 0.5px solid black;width:50%; font-size:15px;" >Order Name :  {!newod.Name}</th>
+            <th colspan="2" style="border: 0.5px solid black;width:50%; font-size:15px;" >Company Name :{!newod.Account_Name__c} </th>
+        </tr> 
+        <tr style="border: 1px solid black;">
+            <th colspan="2" style="border: 0.5px solid black;width:50%; font-size:15px;" >Order Date : <apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
+    <apex:param value="{!newod.Order_Date__c}" /> 
+</apex:outputText>
+            </th>
+            <th colspan="2" style="border: 0.5px solid black;width:50%; font-size:15px;" >Delivery Date :  <apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
+    <apex:param value="{!newod.Delivery_Date__c}" /> 
+</apex:outputText>
+            </th>    
+        </tr>
+        <tr style="border: 1px solid black;">
+            <th colspan="2" style="border: 0.5px solid black;width:50%; font-size:15px;" >Date :  <apex:outputText value="{!DAY(TODAY())}/{!MONTH(TODAY())}/{!YEAR(TODAY())}"/></th>
+            
+        </tr> 
+     
+        
+    </table>
+    
+     <table width="100%" height="100%" style="border: 1px solid #ccc; border-collapse:collapse;">
+        <tr>
+            <td style="border:1px solid black; width:12.5%; text-align:center; font-size:15px;">Item Line No.</td>
+            <td style="border:1px solid black; width:12.5%; text-align:center; font-size:15px;">Product Name</td>
+            <td style="border:1px solid black; width:12.5%; text-align:center; font-size:15px;">Quantity</td>
+        </tr> 
+        <apex:variable var="index" value="{!1}"/>
+        <apex:repeat value="{!od}" var="p">
+            <tr>
+                <td style="border:1px solid black; text-align:right;font-size:12px"><apex:outputLabel value="{!index}"/><apex:variable var="index" value="{!index+1}"/></td>
+                <td style="border:1px solid black; text-align:right;font-size:12px">{!p.New_Product__r.Name}</td>
+                <td style="border:1px solid black; text-align:right;font-size:12px">{!p.Quantity__c}</td>
+                
+            </tr>
+        </apex:repeat>  
+    </table>
+</apex:page>

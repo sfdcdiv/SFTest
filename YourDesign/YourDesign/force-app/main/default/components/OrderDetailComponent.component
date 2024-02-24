@@ -1,0 +1,40 @@
+<apex:component controller="OrderDetailController" access="global">
+  <!--  <apex:attribute type="Id" name="recordId" description="record Id" access="global"  assignTo="{!orderId}"/>
+      <apex:dataTable value="{!pdtl}" var="pd">
+           <apex:column headerValue="Product Name" value="{!pd.Name}" title="Product Name"/>
+       </apex:dataTable>-->
+    <p>
+        Order Id: {!orderId} 
+    </p>
+ <!--   <apex:dataTable value="{!nod}" var="od" width="100%">
+        <apex:facet name="header">Order data</apex:facet>
+           <apex:column headerValue="Order Id" value="{!od.Id}" title="Order Id"/>
+           <apex:column headerValue="Order Name" value="{!od.Name}" title="Order Name"/>
+           <apex:column headerValue="Amount Payable" value="{!od.Order_Value__c}" title="Amount Payable"/>
+           <apex:column headerValue="Order Date" value="{!od.Order_Date__c}" title="Order Date"/>
+           <apex:column headerValue="Delivery Date" value="{!od.Delivery_Date__c}" title="Delivery Date"/>
+        
+    </apex:dataTable>-->
+    
+     <style>
+        table{border:1px solid #000;}
+        td,th {border: 1px solid #000}
+    </style>
+    <apex:attribute name="recordId" assignTo="{!orderId}"  type="Id" description="Order Id" />
+    <h1>Your Order Details</h1>
+    <table >
+    <tr>
+        <th>Id</th>
+        <th>Quantity</th>
+       <!-- <th>Amount</th>-->
+    </tr>
+    <apex:repeat value="{!odl}" var="od">
+        <tr>
+             <td>{!od.Id}</td>
+            <td><apex:outputField value="{!od.Quantity__c}" /></td>
+          <!--  <td>{!od.Order_Value__c}</td>-->
+        </tr>
+    </apex:repeat>
+    </table>
+   
+</apex:component>
