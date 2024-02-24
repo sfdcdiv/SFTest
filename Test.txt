@@ -5,6 +5,8 @@ D
 E
 F
 G
+This change by another person in git repository, but this will 
+not reflect in ur local machine until you do git pull operation
 Hello
 Welcome
 Welcome Again
